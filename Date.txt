@@ -1,0 +1,37 @@
+Input Date Fields	Auto-Populated dates based on Input Date fields
+
+
+Scheduled Start Date	Requirement Start Date
+	Requirement End Date
+	Design Start Date
+	Design End Date
+	Construction Start Date
+
+            
+       Scheduled End Date	Construction End Date
+	Test Start Date
+	Test End Date
+	Release Start Date
+	Release End Date
+
+Calculation Logic:
+
+Step 1. Current Schedule End date will be the Release End date.
+Step 2. Release End date minus 7 days will be the Release Start date.
+Step 3. Release Start Date minus 1 day will be the Test End date.
+Step 4. Test Start Date will be 0.3*Project Duration before the Test End date. [Eg. If the Project Duration is 10days, and Test End date is 13th July 2017, then the Test Start date will be 10th July 2017 – 0.3*10 = 3 days, so 3 days before the 13th of July will be 10th of July.]
+Step 5. Test Start date minus one day will be the Construction End date.
+Step 6. Construction Start date will be 0.2*Project Duration before the Construction End Date.
+Step 7. Construction End Date minus one day will be the Design End Date.
+Step 8. Design Start Date will be 0.15*Project Duration before the Design End Date
+Step 9. Design Start Date minus one day will be the Requirement End Date.
+Step 10. Requirement Start Date will be the Scheduler Start Date.
+
+
+Common Rule for Calculation Logic
+
+1.	If any of the Start date falls on Saturday – Add 2 days to the start date and move the start date to Monday [Eg., If Start Date falls on 1st July 2017, then System populates 3rd July 2017  as the Start Date]
+2.	If any of the Start date falls on Sunday – Add 1 day to the start date and move the start date to Monday [Eg., If Start Date falls on 2nd July 2017, then System populates 3rd July 2017 as the Start Date]
+3.	If any of the End date falls on Saturday – Subtract 1 day from the end date and move the End date to Friday [Eg., If End Date falls on 1st July 2017, then System populates 30th June 2017 as the End Date]
+4.	If any of the End date falls on Sunday – Subtract 2 days from the end date and move the end date to Friday [Eg., If End Date falls on 2nd July 2017, then System populates 30th June 2017 as the Start Date]
+5.	The Project Duration is derived between two dates i.e., Current scheduler Start date and Current scheduler End date, calculating the total number of days between the two days, exclusive of weekends.
